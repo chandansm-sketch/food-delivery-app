@@ -22,7 +22,7 @@ const Dashboard = () => {
 
     const loadMenu = async (restId) => {
         try {
-            const { data } = await axios.get(`http://localhost:5000/api/restaurants/${restId}`);
+            const { data } = await axios.get(`https://food-delivery-app-1atr.onrender.com/api/restaurants/${restId}`);
             setMenu(data.menu);
         } catch (err) {
             console.error('Failed to load menu');
@@ -33,14 +33,14 @@ const Dashboard = () => {
         const fetchDashboardData = async () => {
             try {
                 // Fetch all profiles owned by user
-                const { data: profiles } = await axios.get('http://localhost:5000/api/restaurants/my-profile', config);
+                const { data: profiles } = await axios.get('https://food-delivery-app-1atr.onrender.com/api/restaurants/my-profile', config);
                 setRestaurants(profiles);
 
                 const activeRes = profiles.length > 0 ? profiles[0] : null;
                 setRestaurant(activeRes);
 
                 // Fetch all orders for all restaurants
-                const { data: ownerOrders } = await axios.get('http://localhost:5000/api/orders/owner', config);
+                const { data: ownerOrders } = await axios.get('https://food-delivery-app-1atr.onrender.com/api/orders/owner', config);
                 setAllOrders(ownerOrders);
 
                 if (activeRes) {
@@ -78,7 +78,7 @@ const Dashboard = () => {
     const handleCreateProfile = async (e) => {
         e.preventDefault();
         try {
-            const { data } = await axios.post('http://localhost:5000/api/restaurants/profile', profileForm, config);
+            const { data } = await axios.post('https://food-delivery-app-1atr.onrender.com/api/restaurants/profile', profileForm, config);
 
             // If editing an existing one, it returns updated. If creating new, returns new.
             // A simple refresh is easiest given multi-restaurant complexity
@@ -93,11 +93,11 @@ const Dashboard = () => {
         if (!restaurant) return;
         try {
             if (editingMenuId) {
-                const { data } = await axios.put(`http://localhost:5000/api/restaurants/menu/${editingMenuId}`, menuForm, config);
+                const { data } = await axios.put(`https://food-delivery-app-1atr.onrender.com/api/restaurants/menu/${editingMenuId}`, menuForm, config);
                 setMenu(menu.map(m => m._id === editingMenuId ? data : m));
                 setEditingMenuId(null);
             } else {
-                const { data } = await axios.post('http://localhost:5000/api/restaurants/menu', { ...menuForm, restaurantId: restaurant._id }, config);
+                const { data } = await axios.post('https://food-delivery-app-1atr.onrender.com/api/restaurants/menu', { ...menuForm, restaurantId: restaurant._id }, config);
                 setMenu([...menu, data]);
             }
             setMenuForm({ name: '', description: '', price: '', image: '' });
@@ -109,7 +109,7 @@ const Dashboard = () => {
     const handleDeleteMenu = async (itemId) => {
         if (!window.confirm('Are you sure you want to delete this menu item?')) return;
         try {
-            await axios.delete(`http://localhost:5000/api/restaurants/menu/${itemId}`, config);
+            await axios.delete(`https://food-delivery-app-1atr.onrender.com/api/restaurants/menu/${itemId}`, config);
             setMenu(menu.filter(m => m._id !== itemId));
         } catch (err) {
             alert('Error deleting menu item');
@@ -123,7 +123,7 @@ const Dashboard = () => {
             }
         }
         try {
-            const { data } = await axios.put(`http://localhost:5000/api/orders/${id}/status`, { status }, config);
+            const { data } = await axios.put(`https://food-delivery-app-1atr.onrender.com/api/orders/${id}/status`, { status }, config);
             setAllOrders(allOrders.map(o => o._id === id ? data : o));
         } catch (err) {
             alert('Error updating status');

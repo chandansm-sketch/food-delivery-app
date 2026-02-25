@@ -33,7 +33,7 @@ const VerifyOTP = () => {
         setLoading(true);
 
         try {
-            const { data } = await axios.post('http://localhost:5000/api/auth/verify-otp', {
+            const { data } = await axios.post('https://food-delivery-app-1atr.onrender.com/api/auth/verify-otp', {
                 phone,
                 otp
             });

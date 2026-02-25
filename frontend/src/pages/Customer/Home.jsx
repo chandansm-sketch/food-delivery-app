@@ -15,7 +15,7 @@ const Home = () => {
     useEffect(() => {
         const fetchRestaurants = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/api/restaurants');
+                const { data } = await axios.get('https://food-delivery-app-1atr.onrender.com/api/restaurants');
                 setRestaurants(data);
             } catch (error) {
                 console.error('Error fetching restaurants', error);

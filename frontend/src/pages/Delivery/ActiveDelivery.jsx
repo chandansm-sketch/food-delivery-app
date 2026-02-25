@@ -20,7 +20,7 @@ const ActiveDelivery = () => {
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/api/orders/delivery/my-deliveries', config);
+                const { data } = await axios.get('https://food-delivery-app-1atr.onrender.com/api/orders/delivery/my-deliveries', config);
                 const thisOrder = data.find(o => o._id === id);
                 if (thisOrder) {
                     setOrder(thisOrder);
@@ -54,7 +54,7 @@ const ActiveDelivery = () => {
 
     const updateStatus = async (newStatus) => {
         try {
-            await axios.put(`http://localhost:5000/api/orders/${id}/status`, { status: newStatus }, config);
+            await axios.put(`https://food-delivery-app-1atr.onrender.com/api/orders/${id}/status`, { status: newStatus }, config);
             setStatus(newStatus);
             // Emit real-time status change to Customer
             socket.emit('update_status', { orderId: id, status: newStatus });

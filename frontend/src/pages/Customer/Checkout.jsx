@@ -55,7 +55,7 @@ const Checkout = () => {
                 headers: { Authorization: `Bearer ${token}` }
             };
 
-            const { data } = await axios.post('http://localhost:5000/api/orders', {
+            const { data } = await axios.post('https://food-delivery-app-1atr.onrender.com/api/orders', {
                 restaurant: restaurantId,
                 items,
                 total: grandTotal,

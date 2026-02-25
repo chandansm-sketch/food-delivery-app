@@ -13,7 +13,7 @@ const Orders = () => {
         const fetchOrders = async () => {
             try {
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                const { data } = await axios.get('http://localhost:5000/api/orders/myorders', config);
+                const { data } = await axios.get('https://food-delivery-app-1atr.onrender.com/api/orders/myorders', config);
                 setOrders(data);
             } catch (err) {
                 console.error(err);

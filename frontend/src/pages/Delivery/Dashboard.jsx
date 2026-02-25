@@ -18,8 +18,8 @@ const DeliveryDashboard = () => {
     const fetchData = async () => {
         try {
             const [availRes, myRes] = await Promise.all([
-                axios.get('http://localhost:5000/api/orders/delivery/available', config),
-                axios.get('http://localhost:5000/api/orders/delivery/my-deliveries', config)
+                axios.get('https://food-delivery-app-1atr.onrender.com/api/orders/delivery/available', config),
+                axios.get('https://food-delivery-app-1atr.onrender.com/api/orders/delivery/my-deliveries', config)
             ]);
             setAvailableOrders(availRes.data);
             setMyDeliveries(myRes.data);
@@ -63,7 +63,7 @@ const DeliveryDashboard = () => {
 
     const handleAcceptOrder = async (orderId) => {
         try {
-            await axios.put(`http://localhost:5000/api/orders/${orderId}/status`, {
+            await axios.put(`https://food-delivery-app-1atr.onrender.com/api/orders/${orderId}/status`, {
                 deliveryPartnerId: user._id,
                 status: 'Picked Up' // or 'Accepted by Delivery'
             }, config);

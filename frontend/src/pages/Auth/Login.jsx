@@ -23,7 +23,7 @@ const Login = () => {
         setLoading(true);
         try {
             // For development, assuming backend is on 5000
-            await axios.post('http://localhost:5000/api/auth/request-otp', {
+            await axios.post('https://food-delivery-app-1atr.onrender.com/api/auth/request-otp', {
                 phone: fullPhone,
                 role,
                 name: name || 'User'
